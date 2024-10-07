@@ -8,6 +8,8 @@ public class Bola : MonoBehaviour
     Vector3 mover;
     float fuerzaSALT = 10f;
     Rigidbody rb;
+    float h;
+    float v;
     
 
     // Start is called before the first frame update
@@ -20,15 +22,33 @@ public class Bola : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxis("Horizontal"); // h = 1 (D ó ->) h = -1 (A ó <-), h = 0 (NADA)
-        float v = Input.GetAxis("Vertical"); // v = 1 (w ó ->) v = -1 (s ó v), v = 0 (NADA)
+       h = Input.GetAxis("Horizontal"); // h = 1 (D ó ->) h = -1 (A ó <-), h = 0 (NADA)
+        v = Input.GetAxis("Vertical"); // v = 1 (w ó ->) v = -1 (s ó v), v = 0 (NADA)
 
+        Saltar();
+    }
+
+    private void FixedUpdate()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector3.up * fuerzaSALT, ForceMode.Impulse);
         }
-        Vector3 mover = new Vector3 (h, 0, v);
-        
-        transform.Translate(mover * fuerzaSALT,ForceMode.Impulse);
+        Vector3 mover = new Vector3(h, 0, v);
+    }
+    private void Saltar()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * fuerzaSALT, ForceMode.Impulse);
+        }
+    }
+
+    private void OnTruggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Coleccionable"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
