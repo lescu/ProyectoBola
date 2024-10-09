@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Search;
+using TMPro;
 using UnityEngine;
 
 public class Bola : MonoBehaviour
 {
+    private int score;
+    [SerializeField] TMP_Text textoScore;
     Vector3 mover;
+    float fuerzaMover = 5f;
     float fuerzaSALT = 10f;
     Rigidbody rb;
     float h;
@@ -30,10 +34,12 @@ public class Bola : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.AddForce(Vector3.up * fuerzaSALT, ForceMode.Impulse);
-        }
+        //Movimiento
+        rb.AddForce(new Vector3(h, 0, v).normalized * fuerzaMover, ForceMode.Force);
+
+
+
+        //Salto
         Vector3 mover = new Vector3(h, 0, v);
     }
     private void Saltar()
@@ -44,11 +50,13 @@ public class Bola : MonoBehaviour
         }
     }
 
-    private void OnTruggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Coleccionable"))
         {
             Destroy(other.gameObject);
+            score += 10;
         }
+            textoScore.SetText("Score " + score);
     }
 }
