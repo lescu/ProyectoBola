@@ -14,6 +14,8 @@ public class Bola : MonoBehaviour
     Rigidbody rb;
     float h;
     float v;
+    [SerializeField] AudioClip Moneda;
+    [SerializeField] AudioManager Audio;
     
 
     // Start is called before the first frame update
@@ -54,6 +56,7 @@ public class Bola : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Coleccionable"))
         {
+            Audio.ReproducirSonido(Moneda);
             Destroy(other.gameObject);
             score += 10;
         }
