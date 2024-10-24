@@ -18,7 +18,7 @@ public class Coleccionable : MonoBehaviour
     void Update()
     {
         transform.Rotate(rotacion * 10 * Time.deltaTime, Space.World);
-        transform.Translate(movimiento * 5 * Time.deltaTime, Space.World);
+        //transform.Translate(movimiento * 5 * Time.deltaTime, Space.World);
         timer += 1 * Time.deltaTime;
         if (timer >= 5)
         {

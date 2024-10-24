@@ -46,10 +46,16 @@ public class Bola : MonoBehaviour
     }
     private void Saltar()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && TocoSuelo())
         {
             rb.AddForce(Vector3.up * fuerzaSALT, ForceMode.Impulse);
         }
+    }
+
+    private bool TocoSuelo()
+    {
+        bool resultado = Physics.Raycast(transform.position, new Vector3(0, -1, 0), 1.05f);
+        return resultado;
     }
 
     private void OnTriggerEnter(Collider other)
