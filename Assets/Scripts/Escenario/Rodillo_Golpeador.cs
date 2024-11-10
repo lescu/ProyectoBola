@@ -11,7 +11,7 @@ public class Rodillo_Golpeador : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.AddTorque(direccionR * 2500, ForceMode.VelocityChange);
+        rb.AddTorque(direccionR * 250, ForceMode.VelocityChange);
         
     }
 
