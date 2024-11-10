@@ -3,17 +3,27 @@ using System.Collections.Generic;
 using UnityEditor.Search;
 using TMPro;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class Bola : MonoBehaviour
 {
-    private int score;
+    [SerializeField] int score;
+    [SerializeField] int vida;
     [SerializeField] TMP_Text textoScore;
-    Vector3 mover;
-    float fuerzaMover = 5f;
-    float fuerzaSALT = 10f;
+    [SerializeField] TMP_Text textoVida;
+
+    public Vector3 posicionInicial = new Vector3 (0, 0 , 0);
+
+    
     Rigidbody rb;
+    Vector3 mover;
+    float fuerzaMover = 10f;
+    float fuerzaSALT = 10f;
+   
     float h;
     float v;
+    
+    
     [SerializeField] AudioClip Moneda;
     [SerializeField] AudioManager Audio;
     
@@ -22,6 +32,7 @@ public class Bola : MonoBehaviour
     void Start()
     {
        rb = GetComponent<Rigidbody>();
+       rb.position = posicionInicial;
         
     }
 
@@ -65,7 +76,23 @@ public class Bola : MonoBehaviour
             Audio.ReproducirSonido(Moneda);
             Destroy(other.gameObject);
             score += 10;
+            Debug.Log(score);
         }
+        
+        else if (other.gameObject.CompareTag("Respawn"))
+        {
+            rb.position = posicionInicial;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        else if (other.gameObject.CompareTag("Dañino"))
+        {
+            vida -= 1;
+            Debug.Log(score);
+        }
+            textoVida.SetText("Life " + vida);
             textoScore.SetText("Score " + score);
     }
+    
 }

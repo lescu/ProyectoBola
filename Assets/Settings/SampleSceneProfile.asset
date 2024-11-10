@@ -192,7 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   mode:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 2
   gaussianStart:
     m_OverrideState: 0
@@ -207,13 +207,13 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   focusDistance:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 12.4
   aperture:
     m_OverrideState: 0
     m_Value: 5.6
   focalLength:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 185
   bladeCount:
     m_OverrideState: 0
